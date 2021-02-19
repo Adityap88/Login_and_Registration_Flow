@@ -16,19 +16,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class HomeScreen extends AppCompatActivity {
-    private FirebaseAuth mAuth;
 
     Button mSignOut, mLogIn;
     TextView txtWelcome;
-    private FirebaseUser user;
 
     public String name;
 
     @Override
     protected void onStart() {
         super.onStart();
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             if (user.isAnonymous()) {
                 mLogIn.setVisibility(View.VISIBLE);
@@ -36,10 +36,11 @@ public class HomeScreen extends AppCompatActivity {
                 mSignOut.setVisibility(View.GONE);
             } else {
 
-                StringBuilder welcomeMsg= UpperCaseFirstLetter("Signed in as "+user.getDisplayName().toLowerCase());
+                StringBuilder welcomeMsg= UpperCaseFirstLetter("Signed in as "+ Objects.requireNonNull(user.getDisplayName()).toLowerCase());
                 txtWelcome.setText(welcomeMsg.toString());
             }
         }
+        assert user != null;
         if(!user.isEmailVerified()){
             txtWelcome.setText(R.string.verify_mail_text);
         }
@@ -52,7 +53,6 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.home_screen);
         mSignOut = findViewById(R.id.btnSignOut);
         txtWelcome = findViewById(R.id.txtSignIn);
-        mAuth = FirebaseAuth.getInstance();
         mLogIn = findViewById(R.id.btnLogIn);
         mSignOut.setOnClickListener(new View.OnClickListener() {
             @Override

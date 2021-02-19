@@ -128,7 +128,7 @@ public class Register extends AppCompatActivity {
                         // sending user verification mail
                         assert FireUser != null;
                         FireUser.sendEmailVerification();
-                        showSnackBar("Please check your email to verify yourself","OK");
+                        showSnackBar("Please check your email to verify yourself", "OK");
 
 
                         // updating user info
@@ -161,7 +161,7 @@ public class Register extends AppCompatActivity {
                         finish();
                     } else {
                         showProgress(false);
-                        showSnackBar("Unable to Register at this moment","OK");
+                        showSnackBar("Unable to Register at this moment", "OK");
                     }
                 }
             });
@@ -232,8 +232,8 @@ public class Register extends AppCompatActivity {
         }
     };
 
-    public void showSnackBar(String snack_msg,String action_msg){
-        final Snackbar snackbar=Snackbar.make(registerForm,snack_msg, BaseTransientBottomBar.LENGTH_INDEFINITE)
+    public void showSnackBar(String snack_msg, String action_msg) {
+        final Snackbar snackbar = Snackbar.make(registerForm, snack_msg, BaseTransientBottomBar.LENGTH_INDEFINITE)
                 .setAction(action_msg, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
