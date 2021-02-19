@@ -20,8 +20,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -29,6 +27,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -39,7 +39,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
 
 
-public class login extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     private static final int GOOGLE_REQUEST_CODE = 150;
     View mLoginForm, mProgressView;
     private TextView tvLoad;
@@ -115,14 +115,14 @@ public class login extends AppCompatActivity {
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(login.this, Register.class));
+                startActivity(new Intent(Login.this, Register.class));
             }
         });
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hideKeyboard(login.this);
+                hideKeyboard(Login.this);
 
                 String Email = Objects.requireNonNull(mEmail.getEditText()).getText().toString().trim();
                 String Pass = Objects.requireNonNull(mPassword.getEditText()).getText().toString().trim();
@@ -165,10 +165,10 @@ public class login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            startActivity(new Intent(login.this, homeScreen.class));
+                            startActivity(new Intent(Login.this, HomeScreen.class));
                             finish();
                         } else {
-                            Toast.makeText(login.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                            showSnackBar("Authentication Failed","OK");
                         }
                     }
                 });
@@ -190,10 +190,11 @@ public class login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            startActivity(new Intent(login.this, homeScreen.class));
+                            startActivity(new Intent(Login.this, HomeScreen.class));
                             finish();
                         } else {
-                            Toast.makeText(login.this, "Unable to Proceed" + task.getException(), Toast.LENGTH_LONG).show();
+                            showSnackBar("Unable to Proceed at this moment","Try Again");
+
                         }
 
                     }
@@ -226,17 +227,17 @@ public class login extends AppCompatActivity {
                                 if (user.isEmailVerified()) {
                                     showProgress(false);
                                     Log.d(TAG, "Email Verified.");
-                                    startActivity(new Intent(login.this, homeScreen.class));
+                                    startActivity(new Intent(Login.this, HomeScreen.class));
                                     finish();
 
                                 } else {
-                                    Toast.makeText(login.this, "Please Verify your Email Or Register", Toast.LENGTH_SHORT).show();
+                                    showSnackBar("Please Verify your Email Or Register","OK");
                                 }
 
 
                             } else {
                                 showProgress(false);
-                                Toast.makeText(login.this, "Authentication Failed: " + task.getException(), Toast.LENGTH_SHORT).show();
+                                showSnackBar("Authentication Failed","OK");
                             }
                         }
                     });
@@ -254,7 +255,7 @@ public class login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(login.this, "Please Check your Email for reset link", Toast.LENGTH_LONG).show();
+                    showSnackBar("Please Check your Email for reset link","OK");
                 }
             }
         });
@@ -275,7 +276,7 @@ public class login extends AppCompatActivity {
     private void checkCurrentUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            startActivity(new Intent(login.this, homeScreen.class));
+            startActivity(new Intent(Login.this, HomeScreen.class));
             finish();
         }
     }
@@ -345,4 +346,15 @@ public class login extends AppCompatActivity {
             }
         }
     };
+
+    public void showSnackBar(String snack_msg,String action_msg){
+        final Snackbar snackbar=Snackbar.make(mLoginForm,snack_msg, BaseTransientBottomBar.LENGTH_INDEFINITE)
+                .setAction(action_msg, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+        snackbar.show();
+    }
 }
