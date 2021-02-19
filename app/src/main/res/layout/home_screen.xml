@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bac"
     android:orientation="vertical"
-    tools:context=".homeScreen">
+    tools:context=".HomeScreen">
 
 
     <TextView

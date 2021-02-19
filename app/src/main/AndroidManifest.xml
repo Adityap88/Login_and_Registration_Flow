@@ -20,7 +20,7 @@
             android:launchMode="singleTop"/>
 
         <activity
-            android:name=".login"
+            android:name=".Login"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/splashScreenTheme"
@@ -33,7 +33,7 @@
         </activity>
 
         <activity
-            android:name=".homeScreen"
+            android:name=".HomeScreen"
             android:screenOrientation="portrait" />
 
         <meta-data

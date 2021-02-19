@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,7 +70,7 @@ public class Register extends AppCompatActivity {
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Register.this, login.class));
+                startActivity(new Intent(Register.this, Login.class));
                 finish();
             }
         });
@@ -126,7 +128,8 @@ public class Register extends AppCompatActivity {
                         // sending user verification mail
                         assert FireUser != null;
                         FireUser.sendEmailVerification();
-                        Toast.makeText(Register.this, "Please check your email to verify yourself", Toast.LENGTH_LONG).show();
+                        showSnackBar("Please check your email to verify yourself","OK");
+
 
                         // updating user info
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -154,11 +157,11 @@ public class Register extends AppCompatActivity {
                             }
                         });
 
-                        startActivity(new Intent(Register.this, homeScreen.class));
+                        startActivity(new Intent(Register.this, HomeScreen.class));
                         finish();
                     } else {
                         showProgress(false);
-                        Toast.makeText(Register.this, "Registration unSuccessful " + task.getException(), Toast.LENGTH_LONG).show();
+                        showSnackBar("Unable to Register at this moment","OK");
                     }
                 }
             });
@@ -228,4 +231,15 @@ public class Register extends AppCompatActivity {
             }
         }
     };
+
+    public void showSnackBar(String snack_msg,String action_msg){
+        final Snackbar snackbar=Snackbar.make(registerForm,snack_msg, BaseTransientBottomBar.LENGTH_INDEFINITE)
+                .setAction(action_msg, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+        snackbar.show();
+    }
 }

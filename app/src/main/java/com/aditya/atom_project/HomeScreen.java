@@ -16,7 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class homeScreen extends AppCompatActivity {
+public class HomeScreen extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     Button mSignOut, mLogIn;
@@ -61,7 +61,7 @@ public class homeScreen extends AppCompatActivity {
                 GoogleSignIn.getClient(getApplicationContext(),
                         new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
                 ).signOut();
-                startActivity(new Intent(homeScreen.this, login.class));
+                startActivity(new Intent(HomeScreen.this, Login.class));
                 finish();
 
             }
@@ -73,7 +73,7 @@ public class homeScreen extends AppCompatActivity {
                     FirebaseAuth.getInstance().getCurrentUser().delete();
                 }
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(homeScreen.this, login.class));
+                startActivity(new Intent(HomeScreen.this, Login.class));
                 finish();
 
             }
