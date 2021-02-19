@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">atom_project</string>
+    <string name="terms">By creating an account you agree to our\n <a href="http://www.example.com">Terms of Service</a> and <a href="http://www.example.com">Privacy Policy.</a></string>
+    <string name="loading">Loading....Please Wait....</string>
+    <string name="title">Atom</string>
+    <string name="user_name">User Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="login_screen">Already have an account? Login</string>
+    <string name="skip">Skip</string>
+    <string name="splash_screen">splash_screen</string>
+    <string name="login">Login</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="register_user">Register User</string>
+    <string name="reset">Reset Password</string>
+    <string name="skip_loadingText">Setting Up Home Page…</string>
+    <string name="login_loadingText">Logging you in…please wait…</string>
+    <string name="register_loadingText">Registering User…</string>
+    <string name="welcome_msg">"Welcome "</string>
+    <string name="welcome_guest">Signed in as Guest</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="welcome_message">Welcome To Atom</string>
+    <string name="quote">Take the first step in developing a healthy lifestyle</string>
+    <string name="signed_in_as">Signed in As</string>
+    <string name="verify_mail_text">Please Verify your Email to access all functions</string>
+</resources>
