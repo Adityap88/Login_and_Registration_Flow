@@ -93,6 +93,7 @@ public class Login extends AppCompatActivity {
         tvReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyboard(Login.this);
                 String Email = Objects.requireNonNull(mEmail.getEditText()).getText().toString().trim();
                 resetPass(Email);
 
@@ -103,6 +104,7 @@ public class Login extends AppCompatActivity {
         mSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyboard(Login.this);
                 showProgress(true);
                 tvLoad.setText(R.string.skip_loadingText);
                 signInAnonymously();
@@ -115,6 +117,7 @@ public class Login extends AppCompatActivity {
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyboard(Login.this);
                 startActivity(new Intent(Login.this, Register.class));
             }
         });
@@ -123,7 +126,6 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 hideKeyboard(Login.this);
-
                 String Email = Objects.requireNonNull(mEmail.getEditText()).getText().toString().trim();
                 String Pass = Objects.requireNonNull(mPassword.getEditText()).getText().toString().trim();
                 loginWithEMailPass(Email, Pass);
@@ -231,6 +233,7 @@ public class Login extends AppCompatActivity {
                                     finish();
 
                                 } else {
+                                    showProgress(false);
                                     showSnackBar("Please Verify your Email Or Register","OK");
                                 }
 
