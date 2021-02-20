@@ -37,7 +37,7 @@ public class HomeScreen extends AppCompatActivity {
             } else {
 
            
-                txtWelcome.setText(R.string.welcome_message+user.getDisplayName());
+                txtWelcome.setText(R.string.welcome_msg+user.getDisplayName());
             }
         }
         assert user != null;
