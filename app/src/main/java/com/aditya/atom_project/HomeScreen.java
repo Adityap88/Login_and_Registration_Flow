@@ -37,7 +37,7 @@ public class HomeScreen extends AppCompatActivity {
             } else {
 
            
-                txtWelcome.setText("Signed in as"+user.getDisplayName());
+                txtWelcome.setText("Signed in as "+user.getDisplayName());
             }
         }
         assert user != null;
