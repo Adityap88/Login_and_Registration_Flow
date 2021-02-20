@@ -152,7 +152,7 @@ public class Register extends AppCompatActivity {
                                 .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(Register.this, "User Registered Successfully", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(Register.this, "User Registered Successfully", Toast.LENGTH_LONG).show();
                                 Log.d(TAG, "User profile updated.");
                             }
                         });
