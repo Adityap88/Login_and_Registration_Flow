@@ -25,27 +25,6 @@ public class HomeScreen extends AppCompatActivity {
 
     public String name;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            if (user.isAnonymous()) {
-                mLogIn.setVisibility(View.VISIBLE);
-                txtWelcome.setText(R.string.welcome_guest);
-                mSignOut.setVisibility(View.GONE);
-            } else {
-
-           
-                txtWelcome.setText("Signed in as "+user.getDisplayName());
-            }
-        }
-        assert user != null;
-        if(!user.isEmailVerified()){
-            txtWelcome.setText(R.string.verify_mail_text);
-        }
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +33,24 @@ public class HomeScreen extends AppCompatActivity {
         mSignOut = findViewById(R.id.btnSignOut);
         txtWelcome = findViewById(R.id.txtSignIn);
         mLogIn = findViewById(R.id.btnLogIn);
+        
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            if (user.isAnonymous()) {
+                mSignOut.setVisibility(View.GONE);
+                mLogIn.setVisibility(View.VISIBLE);
+                txtWelcome.setText(R.string.welcome_guest);
+                
+            } else {
+                txtWelcome.setText("Signed in as "+user.getDisplayName());
+            }
+             if(!user.isEmailVerified()){
+                 txtWelcome.setText(R.string.verify_mail_text);
+            }
+        }
+  
+       
+        
         mSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
