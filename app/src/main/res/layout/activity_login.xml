@@ -8,15 +8,6 @@
     android:orientation="vertical"
     tools:context=".Login">
 
-    <ImageView
-        android:id="@+id/ivSplash"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/splash_screen"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher"
-        android:visibility="gone" />
-
 
     <ProgressBar
         android:id="@+id/progress"
